@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { Chip, Grid, Link, Typography } from '@mui/material';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRenderCellParams, GridValueGetterParams } from '@mui/x-data-grid';
 import { ShopLayout } from '../../components/layout/ShopLayout';
 import NextLink from 'next/link';
 
@@ -12,7 +12,7 @@ const colums: GridColDef[] = [
         headerName: 'Pagada', 
         description: 'Muestra la información esta pagada', 
         width: 200, 
-        renderCell: (params: GridValueGetterParams) => {
+        renderCell: (params: GridRenderCellParams) => {
             return (
                 params.row.paid
                     ? <Chip color='success' label='Pagada' variant='outlined' />
@@ -25,7 +25,7 @@ const colums: GridColDef[] = [
         description: 'Muestra la información esta pagada', 
         width: 200, 
         sortable: false,
-        renderCell: (params: GridValueGetterParams) => {
+        renderCell: (params: GridRenderCellParams) => {
             return (
                 <NextLink href={`/orders/${ params.row.id }`}>
                     <Link underline='always'>Ir orden</Link>
